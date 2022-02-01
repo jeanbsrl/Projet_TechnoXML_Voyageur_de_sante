@@ -1,0 +1,59 @@
+<html xmlns:act="http://www.ujf-grenoble.fr/l3miage/actes" xmlns:med="http://www.ujf-grenoble.fr/l3miage/medical">
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript">
+                    
+                        function openFacture(prenom, nom, actes) {
+                            var width  = 500;
+                            var height = 300;
+                            if(window.innerWidth) {
+                                var left = (window.innerWidth-width)/2;
+                                var top = (window.innerHeight-height)/2;
+                            }
+                            else {
+                                var left = (document.body.clientWidth-width)/2;
+                                var top = (document.body.clientHeight-height)/2;
+                            }
+                            var factureWindow = window.open('','facture','menubar=yes, scrollbars=yes, top='+top+', left='+left+', width='+width+', height='+height+'');
+                            factureText = "Facture pour : " + prenom + " " + nom;
+                            factureWindow.document.write(factureText);
+                        }
+                    
+                </script>
+        <title>Visites tri&eacute;es</title>
+    </head>
+    <body>
+        <p>
+                    Bonjour 
+                    Sarah,
+                </p>
+        <h3>
+                    Aujourd'hui, vous avez 
+                    1
+                    patients
+                </h3>
+        <h2>
+                    Les patients &agrave; visiter :
+                </h2>
+        <html>
+            <h3>
+                Nom patient :
+                Al&eacute;cole</h3>
+            <h4>
+                Son adresse :
+                50avenue F&eacute;lix Viallet,
+                38031Grenoble,
+                &eacute;tage 6</h4>
+            <h4>
+                Liste des soins &agrave; lui fournir :
+                109
+            Injection sous-cutan&eacute;e.
+        </h4>
+            <a><input type="button" value="Facture" onclick="
+                        openFacture('Al&eacute;cole',
+                                    'Yvon',
+                                    '')
+                    "></a>
+        </html>
+    </body>
+</html>

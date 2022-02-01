@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cabinet>
+    <nom>
+        Soins à Grenoble
+    </nom>
+    <adresse>
+        <numéro>
+            60
+        </numéro>
+        <rue>
+            rue de la Chimie
+        </rue>
+        <codePostal>
+            38041
+        </codePostal>
+        <ville>
+            Grenoble
+        </ville>
+    </adresse>
+    <infirmiers>
+        <infirmier id="001" >
+            <nom>
+                Fréchie  
+            </nom>
+            <prénom>
+                Sarah
+            </prénom>
+            <photo src='sarah.png' />
+        </infirmier>
+        <infirmier id="002" >
+            <nom>
+                Stické  
+            </nom>
+            <prénom>
+                Sophie
+            </prénom>
+            <photo src='sophie.jpg' />
+        </infirmier>
+        <infirmier id="003" >
+            <nom>
+                Ochon
+            </nom>
+            <prénom>
+                Paul
+            </prénom>
+            <photo src='paul.png' />
+        </infirmier>
+    </infirmiers>
+    <patients>
+        <patient>
+            <!-- Homme, né en août 98 en France,
+             à Marseille (no 55 en bouches du rhône)
+             458e naissance -->
+            <nom>
+                Alécole
+            </nom>
+            <prénom>
+                Yvon
+            </prénom>
+            <sexe>
+                M
+            </sexe>
+            <naissance>
+                1998-08-22
+            </naissance>
+            <numéro>
+                198082205545852
+            </numéro>
+            <adresse>
+                <!-- Pour que l'adresse du patient 
+                 soit utilisable par la suite, 
+                 il faudra bien identifier :
+                 l'étage (si besoin)
+                 le numéro de la rue (s'il existe)
+                 le nom de la rue
+                 le code postal (un nombre à 5 chiffres)
+                 la ville -->
+                <étage>
+                    6
+                </étage>
+                <numéro>
+                    50
+                </numéro>
+                <rue>
+                    avenue Félix Viallet
+                </rue>
+                <ville>
+                    Grenoble
+                </ville>
+                <codePostal>
+                    38031
+                </codePostal>
+            </adresse>
+            <visite date="2015-12-08" intervenant="001" >
+                <acte id="109" />
+            </visite>
+        </patient>
+        <patient>
+            <!-- Elvire est née le 08 mars 82 en France, 
+             à Lyon (n° 23 dans le rhône), il s'agissait 
+             de la 52e naissance dans cette ville -->
+            <nom>
+                Orouge
+            </nom>
+            <prénom>
+                Elvire
+            </prénom>
+            <sexe>
+                F
+            </sexe>
+            <naissance>
+                1982-03-08
+            </naissance>
+            <numéro>
+                282036902305218
+            </numéro>
+            <adresse>
+                <étage>
+
+                </étage>
+                <numéro>
+
+                </numéro>
+                <rue>
+                    Rond-Point de la Croix de Vie
+                </rue>
+                <ville>
+                    La Tronche
+                </ville>
+                <codePostal>
+                    38700
+                </codePostal> 
+            </adresse>
+            <visite date="2015-12-08" intervenant="" >
+                <acte id="300" />
+            </visite>
+        </patient>
+        <patient>
+            <!-- Oscare est née le 25 mars 75 en France, 
+             à Chambéry (n° 65 dans la Savoie), il s'agissait 
+             de la 692e naissance -->
+            <nom>
+                Pien
+            </nom>
+            <prénom>
+                Oscare
+            </prénom>
+            <sexe>
+                F
+            </sexe>
+            <naissance>
+                1975-03-25
+            </naissance>
+            <numéro>
+                275037306569202
+            </numéro>
+            <adresse>
+                <étage>
+
+                </étage>
+                <numéro>
+
+                </numéro>
+                <rue>
+                    rue Casimir Brenier
+                </rue>
+                <ville>
+                    Grenoble
+                </ville>
+                <codePostal>
+                    38000
+                </codePostal> 
+            </adresse>
+            <visite date="2015-12-08" intervenant="" >
+                <acte id="104" />
+            </visite>
+        </patient>
+        <patient>
+            <!-- Xavier est un petit garçon né le 02 août 2011 
+             en France, à Bordeaux (n° 63 dans la Gironde). 
+             Il s'agit de la 35e naissance -->
+            <nom>
+                Kapoëtla
+            </nom>
+            <prénom>
+                Xavier
+            </prénom>
+            <sexe>
+                M
+            </sexe>
+            <naissance>
+                2011-08-02
+            </naissance>
+            <numéro>
+                111083306303521
+            </numéro>
+            <adresse>
+                <étage>
+
+                </étage>
+                <numéro>
+                    25
+                </numéro>
+                <rue>
+                    rue des Martyrs
+                </rue>
+                <ville>
+                    Grenoble
+                </ville>
+                <codePostal>
+                    38042
+                </codePostal> 
+            </adresse>
+            <visite date="2015-12-08" intervenant="" >
+                <acte id="111" />
+            </visite>
+        </patient>
+    </patients>
+</cabinet>

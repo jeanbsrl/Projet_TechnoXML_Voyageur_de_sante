@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema  targetNamespace="http://voyageur-de-sante/cabinetInfirmier"
+            version="1.0"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xmlns:inf="http://voyageur-de-sante/cabinetInfirmier"
+            elementFormDefault="qualified">
+    
+    <xs:element name="cabinet" type="inf:Cabinet">
+        <xs:keyref name="idInfirmierExiste" refer="inf:idInfirmierUnique">
+            <xs:selector xpath="inf:patients/inf:patient/inf:visite"/>
+            <xs:field xpath="@intervenant"/>
+        </xs:keyref>
+    </xs:element>
+    
+    <!--
+        type Cabinet
+            -nom de type string
+            -adresse de type AdresseCabinet 
+            -infirmiers de type Infirmiers
+            -patients de type Patients
+    -->
+    <xs:complexType name="Cabinet">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="adresse" type="inf:AdresseCabinet"/>
+            <xs:element name="infirmiers" type="inf:Infirmiers">
+                <xs:key name="idInfirmierUnique">
+                    <xs:selector xpath="inf:infirmier"/>
+                    <xs:field xpath="@id"/>
+                </xs:key>
+            </xs:element>
+            <xs:element name="patients" type="inf:Patients"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!--
+        type AdresseCabinet
+            -numéro de type positiveInteger
+            -rue de type NomRue
+            -codePostal de type CodePostal
+            -ville de type NomVille
+    -->
+    <xs:complexType name="AdresseCabinet">
+        <xs:sequence>
+            <xs:element name="numéro" type="xs:positiveInteger"/>
+            <xs:element name="rue" type="inf:NomRue"/>
+            <xs:element name="codePostal" type="inf:CodePostal"/>
+            <xs:element name="ville" type="inf:NomVille"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!--
+        type CodePostal, string avec restriction pattern 
+            -les 2 premiers caractères peuvent prendre une valeur de 01 à 95, 2A ou 2B
+            -les 3 derniers caractères sont des chiffres quelconques
+    -->
+    <xs:simpleType name="CodePostal">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="((0[1-9])|([1-8][0-9])|(9[0-5])|2A|2B)\d{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!--
+        type NomRue, string avec restriction pattern
+            -commence par 3 ou plus caratères minuscules (accentués ou non) (type de voie)
+            -un espace ou tiret, une lettre majuscule ou minuscule, un apostrophe ou non, et une suite d'au moins une lettre minuscule, le tout 0 ou plusieurs fois
+            
+    -->
+    <xs:simpleType name="NomRue">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Za-zàâäéèêëïîôöùûüÿç]{3,}([ -][A-Za-z]'?[a-zàâäéèêëïîôöùûüÿç]+)*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!--
+        type NomVille, string avec restriction pattern
+            -commence par une lettre majuscule
+            -un apostrophe ou non, puis 0 ou plusieurs caractères minuscules
+            -un espace ou tiret, une lettre majuscule ou minuscule, un apostrophe ou non, et une suite d'au moins une lettre minuscule, le tout 0 ou plusieurs fois
+    -->
+    <xs:simpleType name="NomVille">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]'?[a-zàâäéèêëïîôöùûüÿç]*([ -]{1}[A-Z]?[a-zàâäéèêëïîôöùûüÿç]+)*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!--
+        type Infirmiers
+            séquence de 3 ou plus infirmier de type Infirmier
+    -->
+    <xs:complexType name="Infirmiers">
+        <xs:sequence>
+            <xs:element name="infirmier" type="inf:Infirmier" minOccurs="3" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!--
+        type Infirmier
+            -nom de type NomPrenom
+            -prénom de type NomPrenom
+            -photo de type Photo
+            -un attribut id obligatoire de type IdInfirmier
+    -->
+    <xs:complexType name="Infirmier">
+        <xs:sequence>
+            <xs:element name="nom" type="inf:NomPrenom"/>
+            <xs:element name="prénom" type="inf:NomPrenom"/>
+            <xs:element name="photo" type="inf:Photo"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="inf:IdInfirmier" use="required"/>
+    </xs:complexType>
+   
+    <!--
+        type NomPrenom, string avec restriction pattern
+            -commence par une majuscule, suivi d'au moins 2 caractères 
+                minuscules (comprenant é, è, ï et ç)
+            -puis un tiret ou non suivi d'une lettre majuscule et d'au moins 
+                2 caractères minuscules (comprenant é, è, ï et ç), le tout 0 ou 
+                plusieurs fois
+    -->
+    <xs:simpleType name="NomPrenom">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z][a-zéèëïç]{2,}(-?[A-Z]?[a-zéèïç]{2,})*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!--
+        type Photo, string avec restriction pattern
+            commence par 1 ou plusieurs caractères quelconques, un point, puis 
+            une extension (jpg ,JPG, png, PNG, jpeg, JPEG, gif ou GIF)
+    -->
+    <xs:simpleType name="Photo">
+        <xs:restriction base="xs:string">
+            <xs:pattern value=".+\.(jpg|png|jpeg|gif)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!--
+        type IdInfirmier, string avec restriction pattern
+            3 chiffres prenant les valeurs de 001 à 999
+    -->
+    <xs:simpleType name="IdInfirmier">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(00[1-9])|([1-9]\d{2})"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!--
+        type Patients
+            séquence d'un ou plusieurs patient de type Patient
+    -->
+    <xs:complexType name="Patients">
+        <xs:sequence>
+            <xs:element name="patient" type="inf:Patient" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!--
+        type Patient
+            -nom de type NomPrenom
+            -prénom de type NomPrenom
+            -sexe de type Sexe
+            -naissance de type date
+            -numéro de type NumeroSecu
+            -adresse de type AdressePatient
+            -visite de type Visite
+    -->
+    <xs:complexType name="Patient">
+        <xs:sequence>
+            <xs:element name="nom" type="inf:NomPrenom"/>
+            <xs:element name="prénom" type="inf:NomPrenom"/>
+            <xs:element name="sexe" type="inf:Sexe"/>
+            <xs:element name="naissance" type="xs:date"/>
+            <xs:element name="numéro" type="inf:NumeroSecu"/>
+            <xs:element name="adresse" type="inf:AdressePatient"/>
+            <xs:element name="visite" type="inf:Visite" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!--
+        type Sexe, string énumération valeur F ou M
+    -->
+    <xs:simpleType name="Sexe">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F"/>
+            <xs:enumeration value="M"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!--
+        type NumeroSecu, string avec restriction pattern
+            -commence par 1 ou 2
+            -2 chiffres quelconques (année de naissance)
+            -2 chiffres prenant les valeurs de 01 à 12 (mois de naissance)
+            -2 caractères, soit 2 chiffres de 01 à 95, 96, 98 ou 99, soit 2A ou 2B(département de naissance)
+            -3 chiffres de 001 à 999 (code commune)
+            -3 chiffres de 001 à 999 (numéro de l'ordre de naissance dans le moins)
+            -2 chiffres de 01 à 97 (clé de controle)
+    -->
+    <xs:simpleType name="NumeroSecu">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(1|2)\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-8][0-9]|9[0-689]|2A|2B)(00[1-9]|[0-9][1-9][0-9]){2}(0[1-9]|[1-8][0-9]|9[0-7])"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- 
+        type AdressPatient
+            -étage de type positiveInteger (optionnel)
+            -numéro de type positiveInteger (optionnel)
+            -rue de type NomRue
+            -codePostal de type CodePostal
+            -ville de type NomVille
+    -->
+    <xs:complexType name="AdressePatient">
+        <xs:sequence>
+            <xs:element name="étage" type="xs:positiveInteger" minOccurs="0"/>
+            <xs:element name="numéro" type="xs:positiveInteger" minOccurs="0"/>
+            <xs:element name="rue" type="inf:NomRue"/>
+            <xs:element name="ville" type="inf:NomVille"/>
+            <xs:element name="codePostal" type="inf:CodePostal"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!--
+        type Visite
+            -séquence d'un ou plusieurs acte de type Acte
+            -un attribut date de type date obligatoire
+            -un attribut intervenant de type IdInfirmier optionnel
+    -->
+    <xs:complexType name="Visite">
+        <xs:sequence>
+            <xs:element name="acte" type="inf:Acte" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="date" type="xs:date" use="required"/>
+        <xs:attribute name="intervenant" type="inf:IdInfirmier"/>
+    </xs:complexType>
+    
+    <!--
+        type Acte
+            -un attribut id de type IdActe obligatoire
+    -->
+    <xs:complexType name="Acte">
+        <xs:attribute name="id" type="inf:IdActe" use="required"/>
+    </xs:complexType>
+    
+    <!--
+        type IdActe, type string avec restriction pattern
+            -3 chiffres prenant les valeurs 101 à 113, 200 à 204, 300 à 303 ou 401 à 403
+    -->
+    <xs:simpleType name="IdActe">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(1((0[1-9])|(1[0-3])))|(2(0[0-4]))|(3(0[0-3]))|(4(0[1-3]))"/>
+        </xs:restriction>
+    </xs:simpleType>
+   
+</xs:schema>

@@ -1,0 +1,42 @@
+.grosTitre {
+    color: green;
+    font-size: 3em;
+    font-weight: bold;
+    margin-left: 7%;
+}
+
+.card {
+    border: 1px solid black;
+    margin-left: 5%;
+    margin-bottom: 2%;
+}
+
+.nom {
+    color: crimson;
+}
+
+body {
+    display: block;
+    margin: 8px;
+}
+
+p {
+    margin-left: 2%;
+}
+
+h5 {
+    margin-left: 2%;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-left: 2%;
+}
+
+*{
+    background-color: whitesmoke;
+    font-family: goudy old style;
+}

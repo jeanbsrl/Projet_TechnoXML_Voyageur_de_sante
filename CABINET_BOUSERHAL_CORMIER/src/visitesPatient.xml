@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><visites xmlns:act="http://www.ujf-grenoble.fr/l3miage/actes" xmlns:med="http://www.ujf-grenoble.fr/l3miage/medical">
+    <name>0</name>
+    <prénom>0</prénom>
+    <sexe>0</sexe>
+    <naissance>0</naissance>
+    <numéroSS>0</numéroSS>
+    <adresse>
+        <numéro>0</numéro>
+        <rue>0</rue>
+        <codePostal>0</codePostal>
+        <ville>0</ville>
+        <étage>0</étage>
+    </adresse>
+    <visite date="">
+        <intervenant>
+            <name>0</name>
+            <prénom>0</prénom>
+        </intervenant>
+        <acte>0</acte>
+    </visite>
+</visites>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><patient>
+<nom>Pien</nom>
+<prénom>Oscare</prénom>
+<sexe>F</sexe>
+<naissance>1975-03-25</naissance>
+<numéroSS>275037306569202</numéroSS>
+<adresse>
+<étage>10</étage>
+<rue>rue Casimir Brenier</rue>
+<ville>Grenoble</ville>
+<codePostal>38000</codePostal>
+</adresse>
+<visite date="2015-12-08">
+<intervenant>
+<nom>Fréchie</nom>
+<prénom>Sarah</prénom>
+</intervenant>
+<acte> 
+            Prélèvement par ponction veineuse directe
+        </acte>
+<acte>
+            Inection intraveineuse directe isolée.
+        </acte>
+</visite>
+<visite date="2015-12-25">
+<intervenant>
+<nom>Ochon</nom>
+<prénom>Paul</prénom>
+</intervenant>
+<acte>
+            Injection d'un ou plusieurs allergènes, poursuivant un traitement
+            d'hyposensibilisation spécifique, selon le protocole écrit, y compris la
+            surveillance, la tenue du dossier de soins, la transmission des informations 
+            au médecin prescripteur.
+        </acte>
+</visite>
+</patient>
